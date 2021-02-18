@@ -1,0 +1,16 @@
+kind: pipeline
+name: cyg
+
+environment:
+steps:
+- name: gas
+  image: rzlamrr/dvst-builder:latest
+  user: root
+  environment:
+    BOT_TOKEN:
+      from_secret: BOT_TOKEN
+  commands:
+  - rm -rf * && rm -rf .git
+  - wget https://raw.githubusercontent.com/rzlamrr/scripts/master/ROM/cyg.sh
+  - chmod +x cyg.sh
+  - bash cyg.sh
